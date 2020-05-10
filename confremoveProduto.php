@@ -23,26 +23,23 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+      
       <a class="navbar-brand" href="#">Listagem de Clientes</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="index.php">Catálogo
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="formProduto.php">Cadastro</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -54,18 +51,18 @@
 
   <!-- Page Content -->
   <div class="container">
-
+    <center>
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <p class="lead">
-          <h3>Confirma exclusão do cliente?</h3>
+          <h4>Confirma exclusão do cliente?</h4>
           <p>
               <a href="removecliente.php?id=<?=$id?>" class="btn btn-warning">SIM</a>
               <a href="index.php" class="btn btn-primary">NÃO</a>
           </p>
       </p>
     </header>
-
+    </center>
 
   </div>
   <!-- /.container -->
@@ -73,7 +70,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Igor Fortes 2020</p>
     </div>
     <!-- /.container -->
   </footer>

@@ -23,25 +23,19 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Listagem de Clientes</a>
+      <a class="navbar-brand" href="#">Produtos</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="index.php">Catálogo
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="formProduto.php">Cadastro</a>
           </li>
         </ul>
       </div>
@@ -51,12 +45,13 @@
   <?php
       $id=0;
       $nome="";
-      $endereco="";
-      $estado=1;
+      $descricao="";
+      $valor=0;
+      $categoria="";
       
       $con = mysqli_connect("localhost","bob","bob","univille");
       if(isset($_GET['id'])){
-          $select = "select * from cliente where codigo = ?";
+          $select = "select * from produto where codigo = ?";
           $stmt = mysqli_prepare($con, $select);
           mysqli_stmt_bind_param($stmt, "i", $_GET['id']);
           mysqli_stmt_execute($stmt);
@@ -65,12 +60,14 @@
           $row = $result->fetch_assoc();
           $id = $row['codigo'];
           $nome = $row['nome'];
-          $endereco = $row['endereco'];
-          //$estado = $row['estado'];
+          $descricao = $row['descricao'];
+          $valor = $row['valor'];
+          $categoria = $row['categoria'];
+
       }
       
-      $sqlestados = "select * from estado";
-      $resultestados = mysqli_query($con,$sqlestados);
+      $sqlcategoria = "select * from categoria";
+      $resultcategorias = mysqli_query($con,$sqlcategoria);
 
       
   ?>
@@ -81,8 +78,8 @@
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <p class="lead">
-          <h3>Cliente</h3>
-          <form method="post" action="savecliente.php">
+          <h3>Produto</h3>
+          <form method="post" action="saveProduto.php">
             
             <input type="hidden" name="txtId" value="<?=$id?>">
             
@@ -92,27 +89,32 @@
                   name="txtNome" value="<?=$nome?>">
             </div>
             <div class="form-group">
-                <label for="txtEndereco">Endereço</label>
-                <input type="text" class="form-control" id="txtEndereco" 
-                  name="txtEndereco" value="<?=$endereco?>">
+                <label for="txtEndereco">Descrição</label>
+                <input type="text" class="form-control" id="txtDescricao" 
+                  name="txtDescricao" value="<?=$descricao?>">
             </div>
             <div class="form-group">
-                <label for="txtEstado">Estado</label>
+                <label for="txtEndereco">Valor</label>
+                <input type="float" class="form-control" id="txtValor" 
+                  name="txtValor" value="<?=$valor?>">
+            </div>
+            <div class="form-group">
+                <label for="txtCategoria">Estado</label>
                 
-                <select id="txtEstado" name="txtEstado">
+                <select id="txtCategoria" name="txtCategoria">
                    <?php
-                      while($rowestado = $resultestados->fetch_row()){
+                      while($rowcategoria = $resultcategorias->fetch_row()){
                    ?>
-                   <option value="<?=$rowestado[0]?>" <?=($estado==$rowestado[0]?"selected":"")?> ><?=$rowestado[1]?></option>
+                   <option value="<?=$rowcategoria[1]?>" <?=($categoria==$rowcategoria[1]?"selected":"")?> ><?=$rowcategoria[1]?></option>
                    <?php
                       }
                    ?>
                 </select>
                 
             </div>
-            
-            
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <p align="right">
+              <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            </p>
           </form>
       </p>
     </header>
