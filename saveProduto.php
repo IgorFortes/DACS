@@ -5,7 +5,7 @@
     $valor     = $_POST['txtValor'];
     $categoria     = $_POST['txtCategoria'];
     
-    $con = mysqli_connect("localhost","bob","bob","univille");
+    include 'dbconnect.php';
     
     if($id == "0"){
         $insert = "insert into produto(nome, descricao, valor, categoria) values(?,?,?,?);";

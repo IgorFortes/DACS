@@ -48,7 +48,8 @@
 
     <?php
         $nome2=$_POST['nome2'];
-        $con = mysqli_connect("localhost","bob","bob","univille");
+        
+        include 'dbconnect.php';
         
         if (isset($_GET['pesquisa']) && ($_GET['pesquisa']==1)){
           $sql = "select * from produto where nome LIKE '%{$nome2}%'";

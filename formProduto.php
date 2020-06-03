@@ -49,7 +49,7 @@
       $valor=0;
       $categoria="";
       
-      $con = mysqli_connect("localhost","bob","bob","univille");
+      include 'dbconnect.php';
       if(isset($_GET['id'])){
           $select = "select * from produto where codigo = ?";
           $stmt = mysqli_prepare($con, $select);
